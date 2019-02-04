@@ -1,0 +1,86 @@
+<mat-sidenav-container>
+  <!-- Notes List -->
+  <mat-sidenav #sideNav mode="over">
+    <mat-nav-list>
+      <mat-list-item
+        *ngFor="let note of notes"
+        (click)="setActive(note, noteForm)"
+      >
+        {{ note.title }}
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Note Editor -->
+  <mat-sidenav-content>
+    <mat-card>
+      <button mat-button type="button" (click)="sideNav.toggle()">
+        Show Notes
+      </button>
+      <form (submit)="onSave(noteForm)" #noteForm="ngForm">
+
+        <!--Buttons for save, new and delete. Save submits the content of the form-->
+        <mat-action-row>
+          <button
+            mat-button
+            matTooltip="Save Note"
+            class="saveBtn"
+            type="submit"
+            color="primary"
+            [disabled]="noteTitle.invalid"
+            [ngClass]="{ emphasized: noteForm.dirty }"
+          >
+            ~
+          </button>
+          <button
+            mat-button
+            matTooltip="New Note"
+            class="createBtn"
+            type="button"
+            color="primary"
+            (click)="onNew(noteForm)"
+          >
+            +
+          </button>
+          <button
+            mat-button
+            matTooltip="Delete Note"
+            class="deleteBtn"
+            type="button"
+            color="warn"
+            (click)="onDelete(noteForm)"
+          >
+            &minus;
+          </button>
+        </mat-action-row>
+
+        <!--Title field-->
+        <mat-form-field id="titleFormField">
+          <input
+            matInput
+            type="text"
+            name="title"
+            placeholder="Title"
+            ngModel
+            #noteTitle="ngModel"
+            required
+            autocomplete="off"
+          />
+        </mat-form-field>
+        <br />
+        <!--Content field-->
+        <mat-form-field id="textareaFormField">
+          <textarea
+            matInput
+            matTextareaAutosize
+            type="text"
+            rows="20"
+            name="content"
+            ngModel
+            #noteContent="ngModel"
+          ></textarea>
+        </mat-form-field>
+      </form>
+    </mat-card>
+  </mat-sidenav-content>
+</mat-sidenav-container>

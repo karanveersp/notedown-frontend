@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+  <span class="pointer" [routerLink]="['/']">notedown</span>
+
+  <span class="fill-space"></span>
+
+  <button mat-button [routerLink]="['/login']" *ngIf="!isLoggedIn" routerLinkActive="mat-accent">Login</button>
+  <button mat-button [routerLink]="['/signup']" *ngIf="!isLoggedIn" routerLinkActive="mat-accent">Signup</button>
+
+  <!-- Only show if logged in-->
+  <button mat-button [routerLink]="['/notes']" *ngIf="isLoggedIn" routerLinkActive="mat-accent">Notes</button>
+  <button mat-button *ngIf="isLoggedIn" (click)="onLogout()">Logout</button>
+
+</mat-toolbar>

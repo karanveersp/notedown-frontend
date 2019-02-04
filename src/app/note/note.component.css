@@ -1,0 +1,27 @@
+
+
+mat-card {
+  margin-left: 220px;
+  margin-right: 220px;
+}
+
+mat-sidenav {
+  width: 218px;
+}
+
+mat-action-row {
+  float: right;
+}
+
+textarea, #textareaFormField {
+  width: 100%;
+}
+
+.emphasized {
+  color: orange;
+  text-decoration: underline;
+}
+
+#titleFormField {
+  margin: auto;
+}
