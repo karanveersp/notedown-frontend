@@ -22,6 +22,7 @@ textarea, #textareaFormField {
   text-decoration: underline;
 }
 
-#titleFormField {
-  margin: auto;
+#unsavedMessage {
+  display: block;
+  text-align: right;
 }

@@ -14,11 +14,12 @@
   <!-- Note Editor -->
   <mat-sidenav-content>
     <mat-card>
-      <button mat-button type="button" (click)="sideNav.toggle()">
+      <button mat-button type="button" color="primary" (click)="sideNav.toggle()">
         Show Notes
       </button>
+      <br/>
+      <br/>
       <form (submit)="onSave(noteForm)" #noteForm="ngForm">
-
         <!--Buttons for save, new and delete. Save submits the content of the form-->
         <mat-action-row>
           <button
@@ -80,6 +81,8 @@
             #noteContent="ngModel"
           ></textarea>
         </mat-form-field>
+        <small id="unsavedMessage" *ngIf="noteForm.dirty">note unsaved</small>
+
       </form>
     </mat-card>
   </mat-sidenav-content>

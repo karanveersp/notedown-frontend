@@ -55,15 +55,30 @@ export class NoteComponent implements OnInit, OnDestroy {
   }
 
   onNew(form: NgForm) {
-    this.noteId = '';
+    if (form.dirty && form.valid) {
+      // save the form before resetting
+      if (confirm('Save current note?')) this.onSave(form);
+    }
+    this.noteId = ''; // reset noteId
     form.resetForm();
   }
 
   onDelete(form: NgForm) {
     console.log('Deleting note...');
-    if (this.noteId.length === 0) return;
-    this.noteService.deleteNote(this.noteId);
-    this.onNew(form);
+    if (form.dirty) {
+      if (confirm('Are you sure you want to delete?')) {
+        this.deleteNoteAndResetForm(form);
+      }
+    } else {
+      this.deleteNoteAndResetForm(form);
+    }
+  }
+
+  deleteNoteAndResetForm(form: NgForm) {
+    if (this.noteId.length !== 0) {
+      this.noteService.deleteNote(this.noteId);
+    }
+    form.resetForm();
   }
 
   setActive(note: Note, form: NgForm) {
