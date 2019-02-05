@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
   isLoading = false;
-  errorMessage: string;
+  // errorMessage: string;
 
   constructor(private authService: AuthService) { }
 
@@ -18,12 +18,7 @@ export class LoginComponent implements OnInit {
 
   onLogin(form: NgForm) {
     if (form.invalid) return;
-    const message = this.authService.login(form.value.email, form.value.password);
-    if (message) {
-      this.errorMessage = message;
-    } else {
-      this.errorMessage = undefined;
-    }
+    this.authService.login(form.value.email, form.value.password);
   }
 
 }
