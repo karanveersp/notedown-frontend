@@ -29,6 +29,10 @@ export class AuthService {
     return this.userId;
   }
 
+  getToken() {
+    return this.token;
+  }
+
   notifyListeners(authStatus: boolean) {
     this.isAuthenticated = authStatus;
     this.authStatusPublisher.next(authStatus);

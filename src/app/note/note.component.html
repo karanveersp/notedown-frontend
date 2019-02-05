@@ -3,8 +3,8 @@
   <mat-sidenav #sideNav mode="over">
     <mat-nav-list>
       <mat-list-item
-        *ngFor="let note of notes"
-        (click)="setActive(note, noteForm)"
+        *ngFor="let note of notes; let i = index"
+        (click)="setActive(note, i, noteForm)"
       >
         {{ note.title }}
       </mat-list-item>
